@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint-staged": "lint-staged",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -15,15 +16,24 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.4",
     "@types/node": "17.0.21",
     "@types/react": "17.0.39",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
-    "husky": ">=6",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
     "lint-staged": ">=10",
     "typescript": "4.6.2"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn test"
+    }
+  },
   "lint-staged": {
-    "*.js": "eslint --cache --fix"
+    "**/*.{js,jsx,ts,tsx}": "eslint --cache --fix"
   }
 }
